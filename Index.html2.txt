@@ -1,0 +1,810 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Gorilla Tag | Become Monke</title>
+
+<style>
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  background: #090909;
+  color: white;
+  overflow-x: hidden;
+}
+
+/* NAVBAR */
+
+header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  padding: 18px 6%;
+
+  background: rgba(5,5,5,.82);
+  backdrop-filter: blur(14px);
+
+  border-bottom: 1px solid rgba(255,255,255,.08);
+}
+
+.logo {
+  font-size: 1.4rem;
+  font-weight: 1000;
+  letter-spacing: 1px;
+}
+
+nav a {
+  color: #ddd;
+  text-decoration: none;
+  margin-left: 25px;
+  font-weight: bold;
+  transition: .2s;
+}
+
+nav a:hover {
+  color: #ffd000;
+}
+
+/* HERO */
+
+.hero {
+  min-height: 100vh;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  text-align: center;
+
+  padding: 120px 20px;
+
+  position: relative;
+  overflow: hidden;
+
+  background:
+    radial-gradient(
+      circle at 50% 45%,
+      #557a48 0%,
+      #2d4527 20%,
+      #151d14 45%,
+      #090909 75%
+    );
+}
+
+/* Decorative circles */
+
+.hero::before,
+.hero::after {
+  content: "";
+  position: absolute;
+
+  width: 450px;
+  height: 450px;
+
+  border-radius: 50%;
+
+  border: 2px solid rgba(255,255,255,.05);
+
+  animation: float 8s ease-in-out infinite;
+}
+
+.hero::before {
+  left: -200px;
+  top: 20%;
+}
+
+.hero::after {
+  right: -200px;
+  bottom: 5%;
+  animation-delay: 2s;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+}
+
+.monke {
+  font-size: 90px;
+
+  animation:
+    bounce 2s ease-in-out infinite;
+
+  filter: drop-shadow(0 15px 20px rgba(0,0,0,.5));
+}
+
+.hero h1 {
+  font-size: clamp(4rem, 12vw, 9rem);
+
+  line-height: .82;
+
+  text-transform: uppercase;
+
+  font-weight: 1000;
+
+  text-shadow:
+    0 12px 30px rgba(0,0,0,.7);
+}
+
+.hero p {
+  max-width: 650px;
+
+  margin: 30px auto;
+
+  color: #ddd;
+
+  font-size: 1.2rem;
+
+  line-height: 1.6;
+}
+
+/* BUTTON */
+
+.download-button {
+  display: inline-block;
+
+  padding: 18px 38px;
+
+  border-radius: 14px;
+
+  background: #ffd000;
+
+  color: #111;
+
+  text-decoration: none;
+
+  font-size: 1.1rem;
+
+  font-weight: 1000;
+
+  box-shadow:
+    0 0 0 rgba(255,208,0,0);
+
+  transition:
+    transform .2s,
+    box-shadow .2s,
+    background .2s;
+}
+
+.download-button:hover {
+  transform: translateY(-5px) scale(1.04);
+
+  background: #ffe15c;
+
+  box-shadow:
+    0 12px 40px rgba(255,208,0,.35);
+}
+
+/* SECTIONS */
+
+section {
+  max-width: 1200px;
+
+  margin: auto;
+
+  padding: 100px 7%;
+}
+
+section h2 {
+  font-size: 3rem;
+
+  margin-bottom: 20px;
+}
+
+.section-text {
+  color: #aaa;
+
+  line-height: 1.7;
+
+  font-size: 1.1rem;
+
+  margin-bottom: 40px;
+}
+
+/* CARDS */
+
+.cards {
+  display: grid;
+
+  grid-template-columns:
+    repeat(auto-fit, minmax(220px,1fr));
+
+  gap: 20px;
+}
+
+.card {
+  padding: 30px;
+
+  background:
+    linear-gradient(
+      145deg,
+      #1b1b1b,
+      #111
+    );
+
+  border:
+    1px solid #303030;
+
+  border-radius: 20px;
+
+  transition: .25s;
+}
+
+.card:hover {
+  transform: translateY(-8px);
+
+  border-color: #666;
+
+  box-shadow:
+    0 15px 40px rgba(0,0,0,.35);
+}
+
+.card-icon {
+  font-size: 45px;
+
+  margin-bottom: 15px;
+}
+
+.card h3 {
+  font-size: 1.35rem;
+
+  margin-bottom: 12px;
+}
+
+.card p {
+  color: #999;
+
+  line-height: 1.6;
+}
+
+/* MEDIA */
+
+.media-box {
+  display: grid;
+
+  grid-template-columns:
+    repeat(auto-fit, minmax(280px,1fr));
+
+  gap: 22px;
+}
+
+.media-card {
+  min-height: 270px;
+
+  border-radius: 20px;
+
+  padding: 30px;
+
+  display: flex;
+
+  flex-direction: column;
+
+  justify-content: flex-end;
+
+  position: relative;
+
+  overflow: hidden;
+
+  background:
+    linear-gradient(
+      145deg,
+      #355531,
+      #121212
+    );
+
+  border: 1px solid #333;
+
+  transition: .3s;
+}
+
+.media-card:nth-child(2) {
+  background:
+    linear-gradient(
+      145deg,
+      #493d20,
+      #121212
+    );
+}
+
+.media-card:nth-child(3) {
+  background:
+    linear-gradient(
+      145deg,
+      #283c48,
+      #121212
+    );
+}
+
+.media-card:hover {
+  transform: translateY(-8px) scale(1.015);
+}
+
+.media-icon {
+  position: absolute;
+
+  top: 25px;
+  right: 25px;
+
+  font-size: 75px;
+
+  opacity: .8;
+}
+
+.media-card h3 {
+  font-size: 1.5rem;
+
+  margin-bottom: 10px;
+}
+
+.media-card p {
+  color: #bbb;
+
+  margin-bottom: 20px;
+
+  line-height: 1.5;
+}
+
+.small-button {
+  width: fit-content;
+
+  padding: 11px 18px;
+
+  border-radius: 9px;
+
+  background: white;
+
+  color: #111;
+
+  text-decoration: none;
+
+  font-weight: bold;
+
+  transition: .2s;
+}
+
+.small-button:hover {
+  transform: scale(1.05);
+}
+
+/* DOWNLOAD AREA */
+
+.download-area {
+  text-align: center;
+
+  max-width: 1000px;
+
+  margin: 50px auto 100px;
+
+  padding: 80px 30px;
+
+  border-radius: 30px;
+
+  background:
+    radial-gradient(
+      circle,
+      #3b6035,
+      #141414 65%
+    );
+
+  border: 1px solid #303030;
+
+  box-shadow:
+    0 30px 80px rgba(0,0,0,.35);
+}
+
+.download-area h2 {
+  font-size: 3.5rem;
+}
+
+.download-area p {
+  max-width: 650px;
+
+  margin: 20px auto 35px;
+
+  color: #bbb;
+
+  line-height: 1.6;
+}
+
+/* FOOTER */
+
+footer {
+  text-align: center;
+
+  padding: 45px 20px;
+
+  color: #777;
+
+  border-top: 1px solid #222;
+}
+
+.footer-monke {
+  font-size: 40px;
+
+  margin-bottom: 10px;
+}
+
+/* ANIMATIONS */
+
+@keyframes bounce {
+
+  0%,100% {
+    transform: translateY(0) rotate(-2deg);
+  }
+
+  50% {
+    transform: translateY(-15px) rotate(2deg);
+  }
+}
+
+@keyframes float {
+
+  0%,100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-30px);
+  }
+}
+
+/* MOBILE */
+
+@media(max-width:650px) {
+
+  header {
+    padding: 15px 20px;
+  }
+
+  nav {
+    display: none;
+  }
+
+  .hero h1 {
+    font-size: 4rem;
+  }
+
+  .monke {
+    font-size: 70px;
+  }
+
+  section {
+    padding: 70px 20px;
+  }
+
+  section h2 {
+    font-size: 2.3rem;
+  }
+
+  .download-area h2 {
+    font-size: 2.5rem;
+  }
+}
+</style>
+</head>
+
+
+<body>
+
+<!-- NAVIGATION -->
+
+<header>
+
+  <div class="logo">
+    🐒 GORILLA TAG
+  </div>
+
+  <nav>
+    <a href="#about">ABOUT</a>
+    <a href="#media">MEDIA</a>
+    <a href="#download">PLAY</a>
+  </nav>
+
+</header>
+
+
+<!-- HERO -->
+
+<section class="hero">
+
+  <div class="hero-content">
+
+    <div class="monke">
+      🐒
+    </div>
+
+    <h1>
+      BECOME<br>
+      MONKE
+    </h1>
+
+    <p>
+      Run. Jump. Climb. Chase.
+      Enter the world of Gorilla Tag and become monke.
+    </p>
+
+    <a
+      class="download-button"
+      href="https://www.meta.com/experiences/gorilla-tag/4979055762136823/"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      🎮 DOWNLOAD NOW
+    </a>
+
+  </div>
+
+</section>
+
+
+<!-- ABOUT -->
+
+<section id="about">
+
+  <h2>
+    🦍 THE MONKE LIFE
+  </h2>
+
+  <p class="section-text">
+    Gorilla Tag is a multiplayer VR playground built around
+    physical movement. Use your hands to move around,
+    chase players, escape taggers, and explore the world.
+  </p>
+
+
+  <div class="cards">
+
+    <div class="card">
+
+      <div class="card-icon">
+        🦍
+      </div>
+
+      <h3>
+        HAND MOVEMENT
+      </h3>
+
+      <p>
+        Move around by pushing off surfaces
+        with your hands and arms.
+      </p>
+
+    </div>
+
+
+    <div class="card">
+
+      <div class="card-icon">
+        🌲
+      </div>
+
+      <h3>
+        EXPLORE
+      </h3>
+
+      <p>
+        Explore different environments
+        and find your favorite routes.
+      </p>
+
+    </div>
+
+
+    <div class="card">
+
+      <div class="card-icon">
+        👥
+      </div>
+
+      <h3>
+        PLAY TOGETHER
+      </h3>
+
+      <p>
+        Meet up with other players,
+        chase your friends, and play tag.
+      </p>
+
+    </div>
+
+
+    <div class="card">
+
+      <div class="card-icon">
+        🥽
+      </div>
+
+      <h3>
+        VR
+      </h3>
+
+      <p>
+        Put on your headset and
+        jump straight into the action.
+      </p>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- MEDIA -->
+
+<section id="media">
+
+  <h2>
+    📸 MONKE MEDIA
+  </h2>
+
+  <p class="section-text">
+    Check out official Gorilla Tag media,
+    videos, and game information.
+  </p>
+
+
+  <div class="media-box">
+
+
+    <div class="media-card">
+
+      <div class="media-icon">
+        🌳
+      </div>
+
+      <h3>
+        OFFICIAL MEDIA
+      </h3>
+
+      <p>
+        See screenshots, videos, and
+        other official Gorilla Tag media.
+      </p>
+
+      <a
+        class="small-button"
+        href="https://www.gorillatagvr.com/media-reviews"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        VIEW MEDIA →
+      </a>
+
+    </div>
+
+
+    <div class="media-card">
+
+      <div class="media-icon">
+        🎬
+      </div>
+
+      <h3>
+        VIDEOS
+      </h3>
+
+      <p>
+        Watch official Gorilla Tag
+        videos and announcements.
+      </p>
+
+      <a
+        class="small-button"
+        href="https://www.gorillatagvr.com/media-reviews"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        WATCH →
+      </a>
+
+    </div>
+
+
+    <div class="media-card">
+
+      <div class="media-icon">
+        🥽
+      </div>
+
+      <h3>
+        QUEST STORE
+      </h3>
+
+      <p>
+        Open the official Meta Quest
+        store page for Gorilla Tag.
+      </p>
+
+      <a
+        class="small-button"
+        href="https://www.meta.com/experiences/gorilla-tag/4979055762136823/"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        OPEN STORE →
+      </a>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- DOWNLOAD -->
+
+<section id="download">
+
+  <div class="download-area">
+
+    <div style="font-size:70px;">
+      🐒
+    </div>
+
+    <h2>
+      READY TO BECOME MONKE?
+    </h2>
+
+    <p>
+      Grab your headset and jump into Gorilla Tag.
+      Click below to open the Meta Quest Store.
+    </p>
+
+    <a
+      class="download-button"
+      href="https://www.meta.com/experiences/gorilla-tag/4979055762136823/"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      🎮 OPEN META QUEST STORE
+    </a>
+
+  </div>
+
+</section>
+
+
+<!-- FOOTER -->
+
+<footer>
+
+  <div class="footer-monke">
+    🐒
+  </div>
+
+  <strong>
+    REJECT HUMANITY. BECOME MONKE.
+  </strong>
+
+  <br><br>
+
+  <span>
+    Fan-made website concept.
+    Gorilla Tag and its assets belong to their respective owners.
+  </span>
+
+</footer>
+
+
+</body>
+</html>
+```
